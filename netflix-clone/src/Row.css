@@ -1,0 +1,41 @@
+.row {
+  margin-left: 20px;
+  color: white;
+}
+
+/* Individual Rows */
+.row_posters {
+  display: flex;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  padding: 20px;
+}
+
+/* Removing horizontal row scroll bar */
+.row_posters::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual posters */
+.row_poster {
+  object-fit: contain;
+  width: 100%;
+  max-height: 150px;
+  margin-right: 10px;
+  transition: transform 450ms;
+}
+
+/* Hover over poster effect */
+.row_poster:hover {
+  transform: scale(1.08);
+}
+
+/* Large poster for Netflix Originals*/
+.row_posterLarge {
+  max-height: 250px;
+}
+
+/* Hover rule for large posters */
+.row_posterLarge:hover {
+  transform: scale(1.09);
+}
