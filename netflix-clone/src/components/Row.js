@@ -2,19 +2,19 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import axios from '../axios';
 import '../Row.css';
-import YouTube from 'react-youtube'
-import movieTrailer from 'movie-trailer'
 import Card from './Card';
+import {Link} from 'react-router-dom'
+import {useGlobalContext} from '../context'
 
 function Row({title, fetchUrl, isLargeRow}) {
+    //Global context
+    const {setMovie} = useGlobalContext()
+
     //Base URL for poster images
     const base_URL = "https://image.tmdb.org/t/p/original/"
 
     //State for movies
     const [movies, setMovies] = useState([])
-
-    //State for trailer URL
-    const [trailerUrl, setTrailerUrl] = useState('')
     
     //Runs on a spesific condition
     // [] represents dependencies. Blank to run once. Pass in a variable to run on variable change. 
@@ -29,31 +29,6 @@ function Row({title, fetchUrl, isLargeRow}) {
     }, [fetchUrl])
     // console.log(movies);
 
-    //Video playback options
-    const opts = {
-        height: '400',
-        width: '100%',
-        playerVars: {
-            autoplay: 1,
-        },
-    }
-
-    //On poster click function
-    const handleClick = (movie) => {
-        if(trailerUrl){
-            setTrailerUrl('')
-        }
-        else{            
-             movieTrailer( movie?.name || movie?.original_title || movie?.original_name || '')
-             .then((url) => {
-                 const urlParams = new URLSearchParams(new URL(url).search)
-                 setTrailerUrl(urlParams.get('v'))
-                 console.log(trailerUrl)
-              })
-             .catch((error) => console.log(error))
-        }
-    }
-
     // Image hover identifier
     const [isHover, setHover] = useState(false)
     const [movie_title, setMovieTitle] = useState('')
@@ -65,7 +40,6 @@ function Row({title, fetchUrl, isLargeRow}) {
         x: 0,
         y: 0
     })
-
 
     //Changing state data on mouse move
     useEffect(() => {
@@ -79,35 +53,47 @@ function Row({title, fetchUrl, isLargeRow}) {
         }
     })
 
-      
-    
+    //Link on Click handle
+    const handleLinkClick = (id, name, description, poster) => {
+       const idStr = id.toString()
+       setMovie(idStr, name, description, poster)
+    }
+
       return (
+        
         <div className = 'row'>
             <h2>{title}</h2>
             <div className = "row_posters">
                 {/* Row Posters */}
-                {movies.map((movie) => (
-                    <img
-                    key= {movie.id}
-                    className = {`row_poster ${isLargeRow && 'row_posterLarge' }`}
-                    src = {`${base_URL}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
-                    alt = {movie.name}
+                {movies.map((movie) => (    
+                    <Link to = {`/view/${movie.id}`}
+                    key = {movie.id}
+                    className = 'link_poster'
                     onClick = {() => {
-                        handleClick(movie)
-                        // console.log(movie)
-                    }}
-                    onMouseEnter = {() => {
-                        setHover(true)
-                        setMovieTitle(movie.name || movie.original_name || movie.original_title || '')
-                        setMoviePoster(movie.poster_path)
-                        setMovieDescription(movie.overview)
-                    }}
-                    onMouseLeave = {() => {
-                        setHover(false)
-                        setMovieTitle('')
-                        setMoviePoster('')
-                        setMovieDescription('')                       
-                    }}/>
+                        handleLinkClick(
+                            movie.id, 
+                            movie.name || movie.original_name || movie.original_title,
+                            movie.overview,
+                            movie.poster_path
+                        )}}
+                    >            
+                        <img
+                        className = {`row_poster ${isLargeRow && 'row_posterLarge' }`}                
+                        src = {`${base_URL}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+                        alt = {movie.name}
+                        onMouseEnter = {() => {
+                            setHover(true)
+                            setMovieTitle(movie.name || movie.original_name || movie.original_title || '')
+                            setMoviePoster(movie.poster_path)
+                            setMovieDescription(movie.overview)
+                        }}
+                        onMouseLeave = {() => {
+                            setHover(false)
+                            setMovieTitle('')
+                            setMoviePoster('')
+                            setMovieDescription('')                       
+                        }}/>
+                    </Link>   
                 ))}
             </div>
             {isHover && <Card
@@ -115,10 +101,8 @@ function Row({title, fetchUrl, isLargeRow}) {
                         poster = {movie_poster}
                         description = {movie_description}
                         posX = {position.x}
-                        posY = {position.y}
-                        />}
-            {/* Show trailer if there is a trailerUrl */}
-            {trailerUrl && < YouTube videoId = {trailerUrl} opts = {opts} />}
+                        posY = {position.y}/>}
+                                    
         </div>
     )
 }

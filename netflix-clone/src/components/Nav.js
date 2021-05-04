@@ -1,13 +1,14 @@
 import {useState, useEffect} from 'react'
 import React from 'react'
 import '../Nav.css'
+import {Link} from 'react-router-dom'
 
 function Nav() {
 
     //State defining show var
     const [show, handleShow] = useState(false)
     
-    //Black bar appear on scroll down 
+    //Black bar appears on scroll down 
     useEffect(() => {
         window.addEventListener('scroll', () => {
             if(window.scrollY > 100){
@@ -17,15 +18,17 @@ function Nav() {
         })
         return () => {
             // To prevent redundency of event listeners
-            window.removeEventListener('scroll' )
+            window.removeEventListener('scroll')
         }
     }, [])
 
     return (
         <div className = {`nav ${show && 'nav_black'}`}>
-            <img className = 'nav_logo'
-            src = 'https://upload.wikimedia.org/wikipedia/commons/6/67/NewNetflixLogo.png'
-            alt = 'Netflix Logo' />
+            <Link to = '/'>
+                <img className = 'nav_logo'
+                src = 'https://upload.wikimedia.org/wikipedia/commons/6/67/NewNetflixLogo.png'
+                alt = 'Netflix Logo' />
+            </Link>
             
             <img className = 'nav_avatar'
             src = "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"

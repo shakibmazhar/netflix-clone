@@ -1,0 +1,36 @@
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 200px;
+  font-family: "Calibri";
+}
+
+.error_text {
+  color: aliceblue;
+  padding: 20px;
+}
+
+.error_btn {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 3rem;
+  margin: 20px;
+  padding: 10px;
+  color: black;
+  background-color: white;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.error_btn:hover {
+  background-color: crimson;
+  transform: scale(1.05);
+}
+
+.error_btn > p {
+  text-decoration: none;
+}

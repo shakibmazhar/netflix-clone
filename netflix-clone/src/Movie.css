@@ -1,0 +1,75 @@
+.poster {
+  display: flex;
+  flex-direction: column;
+  object-fit: contain;
+  color: white;
+  align-items: center;
+}
+.poster_img {
+  display: block;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 50vh;
+  width: 100%;
+}
+
+.movie_info {
+  object-fit: contain;
+  margin: 40px;
+}
+
+.title {
+  font-family: "Calibri";
+  font-weight: 800;
+  font-size: 40px;
+  color: crimson;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+.desc {
+  font-family: "Calibri";
+  font-weight: 400;
+  font-size: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
+.video {
+  margin: 40px;
+  width: 80vw;
+  height: 40vh;
+}
+
+.no_trailer {
+  font-family: "Calibri";
+  color: crimson;
+  font-weight: 400;
+  font-size: 30px;
+  margin-top: 200px;
+  text-align: center;
+}
+
+.button {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 3rem;
+  margin-top: 150px;
+  margin-bottom: 100px;
+  padding: 10px;
+  width: fit-content;
+  color: black;
+  background-color: white;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.button:hover {
+  background-color: crimson;
+  transform: scale(1.05);
+}

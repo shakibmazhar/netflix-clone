@@ -46,7 +46,7 @@
   transition: all 0.2s;
 }
 
-/* Fades the bottom part of the banner. Fancy stuff! */
+/* Fades the bottom part of the banner*/
 .banner_fadeBottom {
   height: 7.5rem;
   background-image: linear-gradient(

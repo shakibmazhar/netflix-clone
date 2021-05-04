@@ -6,7 +6,7 @@
 /* Individual Rows */
 .row_posters {
   display: flex;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: scroll;
   padding: 20px;
 }
@@ -16,17 +16,28 @@
   display: none;
 }
 
-/* Individual posters */
-.row_poster {
+.link_poster {
   object-fit: contain;
-  width: 100%;
-  max-height: 150px;
+  height: fit-content;
+  width: fit-content;
   margin-right: 10px;
   transition: transform 450ms;
 }
 
+/* Individual posters */
+.row_poster {
+  width: auto;
+  max-height: 150px;
+  transition: transform 450ms;
+  /* object-fit: contain;
+  width: 100%;
+  max-height: 150px;
+  margin-right: 10px;
+  transition: transform 450ms; */
+}
+
 /* Hover over poster effect */
-.row_poster:hover {
+.link_poster:hover .row_poster:hover {
   transform: scale(1.08);
 }
 
@@ -37,5 +48,5 @@
 
 /* Hover rule for large posters */
 .row_posterLarge:hover {
-  transform: scale(1.09);
+  transform: scale(1.08);
 }
