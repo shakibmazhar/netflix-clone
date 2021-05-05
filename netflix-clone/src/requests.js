@@ -1,4 +1,6 @@
-const API_KEY = 'Use your own TMDB api key'
+import api from './api'
+
+const API_KEY = api
 
 const requests = {
     fetchTrending : `/trending/all/week?api_key=${API_KEY}&language=en-US`,

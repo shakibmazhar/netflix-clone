@@ -20,7 +20,8 @@ const Movie = () => {
             autoplay: 1,
         },
     }
-
+    //console.log(movie)
+    //Search for trailer in YT
     const getTrailer = () => {
         movieTrailer( movie?.name || movie?.original_title || movie?.original_name || '')
              .then((url) => {

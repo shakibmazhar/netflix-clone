@@ -10,15 +10,18 @@ function Nav() {
     
     //Black bar appears on scroll down 
     useEffect(() => {
-        window.addEventListener('scroll', () => {
-            if(window.scrollY > 100){
-                handleShow(true)
-            }
-            else handleShow(false)
-        })
+        const eventListener = () => {
+            window.addEventListener('scroll', () => {
+                if(window.scrollY > 100){
+                    handleShow(true)
+                }
+                else handleShow(false)
+            })
+        }
+        eventListener()  
         return () => {
             // To prevent redundency of event listeners
-            window.removeEventListener('scroll')
+            window.removeEventListener('scroll', eventListener)
         }
     }, [])
 
@@ -29,10 +32,11 @@ function Nav() {
                 src = 'https://upload.wikimedia.org/wikipedia/commons/6/67/NewNetflixLogo.png'
                 alt = 'Netflix Logo' />
             </Link>
-            
-            <img className = 'nav_avatar'
-            src = "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
-            alt = 'Netflix Avatar' />
+            <a href="https://www.netflix.com/login">
+                <img className = 'nav_avatar'
+                src = "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+                alt = 'Netflix Avatar' />
+            </a>
             
         </div>
     )

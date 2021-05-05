@@ -4,6 +4,7 @@
   object-fit: contain;
   color: white;
   align-items: center;
+  justify-content: space-evenly;
 }
 .poster_img {
   display: block;
@@ -39,8 +40,8 @@
 
 .video {
   margin: 40px;
-  width: 80vw;
-  height: 40vh;
+  width: 60vw;
+  height: 500px;
 }
 
 .no_trailer {
@@ -57,7 +58,7 @@
   display: inline-block;
   text-decoration: none;
   border-radius: 3rem;
-  margin-top: 150px;
+  margin-top: 50px;
   margin-bottom: 100px;
   padding: 10px;
   width: fit-content;

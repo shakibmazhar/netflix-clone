@@ -34,7 +34,6 @@ const AppProvider = ({children}) => {
             dispatch,
             setMovie
         }}>
-            {console.log(state)}
             {children}
         </AppContext.Provider>
     )
