@@ -38,10 +38,10 @@ function Banner() {
     useEffect(() => {
         const timeout = setInterval(() => {
             //console.log('interval open');
+            const random = Math.floor(Math.random() * storage.length - 1)
+            //console.log(storage.length, random);
             setRandomMovie(
-                storage[
-                    Math.floor(Math.random() * storage.length - 1)
-                ]
+                storage[random]
             )
         }, 10000);
         return () => {
