@@ -38,7 +38,8 @@ function Card({title, poster, description, posX, posY}) {
             alt = 'Poster' />
             <div className="tool-body">
                 <h2>{title}</h2>
-                <p>{turncate(description, 400)}</p>
+                <div className="line"></div>
+                <p>{turncate(description, 150)}</p>
             </div>
         </div>
     )    

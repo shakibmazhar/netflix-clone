@@ -2,7 +2,7 @@
   object-fit: contain;
   color: white;
   height: 450px;
-  width: 100vw;
+  width: 100%;
 }
 
 .banner_contents {
@@ -15,7 +15,13 @@
 .banner_title {
   font-size: 3rem;
   font-weight: 800;
+  max-height: 8rem;
+  overflow-y: scroll;
   padding-bottom: 0.3rem;
+}
+
+.banner_title::-webkit-scrollbar {
+  display: none;
 }
 
 .banner_description {
@@ -25,7 +31,7 @@
   font-size: 0.8rem;
   max-width: 80vw;
   max-height: 80px;
-  overflow-x: hidden;
+  margin-bottom: 20px;
 }
 
 .banner_button {

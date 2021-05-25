@@ -6,7 +6,8 @@ import reducer from './reducer'
 const AppContext = React.createContext() 
 
 const initialState = {
-   movie: {
+    bannerStorage: [],
+    movie: {
        id: null,
        name: '',
        poster: '',
@@ -17,6 +18,13 @@ const initialState = {
 //AppProvider function
 const AppProvider = ({children}) => {
     const [state, dispatch] = useReducer(reducer, initialState)
+
+    const setBannerStorage = (data) => {
+        dispatch({
+            type: "SET_BANNER_STORAGE",
+            payload: data
+        })
+    }
 
     const setMovie = (id, name, description, poster) => {
         dispatch({
@@ -32,7 +40,8 @@ const AppProvider = ({children}) => {
         <AppContext.Provider value = {{
             ...state,
             dispatch,
-            setMovie
+            setMovie,
+            setBannerStorage
         }}>
             {children}
         </AppContext.Provider>

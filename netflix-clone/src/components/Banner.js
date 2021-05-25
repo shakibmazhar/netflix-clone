@@ -8,9 +8,7 @@ import '../Banner.css'
 
 function Banner() {
     //Global context
-    const {setMovie} = useGlobalContext()
-    //Movie storage
-    const [storage, setStorage] = useState([])
+    const {setMovie, setBannerStorage, bannerStorage} = useGlobalContext()
     //State that selects a random movie
     const [randomMovie, setRandomMovie] = useState([])
 
@@ -19,7 +17,7 @@ function Banner() {
         const request = await axios.get(requests.fetchTrending)
         const data = request.data.results
         //Setting movie storage 
-        setStorage(data)
+        setBannerStorage(data)
         //Setting initial random movie pick
         setRandomMovie(
             request.data.results[
@@ -31,6 +29,7 @@ function Banner() {
     //Fetch data on render
     useEffect(() => {
         fetchData()
+        //console.log(bannerStorage)
     }, [])
 
 
@@ -38,10 +37,13 @@ function Banner() {
     useEffect(() => {
         const timeout = setInterval(() => {
             //console.log('interval open');
-            const random = Math.floor(Math.random() * storage.length - 1)
-            //console.log(storage.length, random);
+            let random = Math.floor(Math.random() * bannerStorage.length - 1)
+            if(random < 0 || random >= 20){
+                random = 0
+            }
+            //console.log(bannerStorage.length, random);
             setRandomMovie(
-                storage[random]
+                bannerStorage[random]
             )
         }, 10000);
         return () => {
@@ -102,7 +104,7 @@ function Banner() {
                 
                 {/* Movie description */}
                 <h1 className = 'banner_description'>
-                    {turncate(randomMovie?.overview, 300)}
+                    {turncate(randomMovie?.overview, 200)}
                 </h1>
             </div> 
             

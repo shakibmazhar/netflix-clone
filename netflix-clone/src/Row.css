@@ -7,7 +7,6 @@
 .row_posters {
   display: flex;
   overflow-y: hidden;
-  overflow-x: scroll;
   padding: 20px;
 }
 
@@ -26,8 +25,10 @@
 
 /* Individual posters */
 .row_poster {
+  object-fit: contain;
   width: auto;
   max-height: 150px;
+  margin-right: 10px;
   transition: transform 450ms;
   /* object-fit: contain;
   width: 100%;
